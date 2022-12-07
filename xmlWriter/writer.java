@@ -24,9 +24,16 @@ import org.w3c.dom.Element;
 
 public class writer {
 
+	// Output File Path
 	private static final String xmlFilePath = "C:\\Users\\Aarya\\Downloads\\xmlfile.xml";
+	// Input file path
 	private static final String inputFilePath = "C:\\Users\\Aarya\\Downloads\\methods.txt";
+	// Folder path to lookup for tests
 	private static final String lookupFolderPath = "C:\\Users\\Aarya\\eclipse-workspace\\TestNG Suits\\src\\com\\testng\\suits";
+	
+	private static final String suiteNamePlaceholder = "NightrunSuite";
+	private static final String testNamePlaceholder = "Nightrun";
+
 
 	static ArrayList<String> methodNames = new ArrayList<String>();
 	static HashMap<String, ArrayList<String>> map = new HashMap<>();
@@ -72,7 +79,7 @@ public class writer {
 
 		// set an attribute to root element
 		Attr attrRoot = document.createAttribute("name");
-		attrRoot.setValue("Suitename");
+		attrRoot.setValue(suiteNamePlaceholder);
 		root.setAttributeNode(attrRoot);
 
 		// test element
@@ -82,7 +89,7 @@ public class writer {
 
 		// set an attribute to test element
 		Attr attrTest = document.createAttribute("name");
-		attrTest.setValue("Testname");
+		attrTest.setValue(testNamePlaceholder);
 		test.setAttributeNode(attrTest);
 
 		// classes element
