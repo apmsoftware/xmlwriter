@@ -1,4 +1,4 @@
-package xmlwriter;
+package xmlWriter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,11 +25,11 @@ import org.w3c.dom.Element;
 public class writer {
 
 	// Output File Path
-	private static final String xmlFilePath = "C:\\Users\\aarya.misal\\git\\UK-CCS-SU-Mobile\\Aarya81222.xml";
+	private static final String xmlFilePath = "./TestNG-Suits/Aarya81222.xml";
 	// Input file path
-	private static final String inputFilePath = "C:\\Users\\aarya.misal\\git\\UK-CCS-SU-Mobile\\methods.txt";
+	private static final String inputFilePath = "./TestNG-Suits/methods.txt";
 	// Folder path to lookup for tests
-	private static final String lookupFolderPath = "C:\\Users\\aarya.misal\\git\\UK-CCS-SU-Mobile\\src\\test\\java\\com\\vats\\mobile\\tests";
+	private static final String lookupFolderPath = "./TestNG-Suits/src/com/testng/suits";
 	
 	private static final String suiteNamePlaceholder = "NightrunSuite";
 	private static final String testNamePlaceholder = "Nightrun";
