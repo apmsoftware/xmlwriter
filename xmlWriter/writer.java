@@ -1,4 +1,4 @@
-package xmlWriter;
+package xmlwriter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,11 +25,11 @@ import org.w3c.dom.Element;
 public class writer {
 
 	// Output File Path
-	private static final String xmlFilePath = "C:\\Users\\Aarya\\Downloads\\xmlfile.xml";
+	private static final String xmlFilePath = "C:\\Users\\aarya.misal\\git\\UK-CCS-SU-Mobile\\Aarya81222.xml";
 	// Input file path
-	private static final String inputFilePath = "C:\\Users\\Aarya\\Downloads\\methods.txt";
+	private static final String inputFilePath = "C:\\Users\\aarya.misal\\git\\UK-CCS-SU-Mobile\\methods.txt";
 	// Folder path to lookup for tests
-	private static final String lookupFolderPath = "C:\\Users\\Aarya\\eclipse-workspace\\TestNG Suits\\src\\com\\testng\\suits";
+	private static final String lookupFolderPath = "C:\\Users\\aarya.misal\\git\\UK-CCS-SU-Mobile\\src\\test\\java\\com\\vats\\mobile\\tests";
 	
 	private static final String suiteNamePlaceholder = "NightrunSuite";
 	private static final String testNamePlaceholder = "Nightrun";
@@ -39,7 +39,6 @@ public class writer {
 	static HashMap<String, ArrayList<String>> map = new HashMap<>();
 
 	public static void main(String[] args) throws ParserConfigurationException, TransformerException {
-		// TODO Auto-generated method stub
 		System.out.println("This will generate test suite from input file methods");
 
 		FillMethodNames();
@@ -48,7 +47,6 @@ public class writer {
 	}
 
 	private static void FillMethodNames() {
-		// TODO Auto-generated method stub
 		try {
 			File inpFile = new File(inputFilePath);
 			Scanner scanner = new Scanner(inpFile);
@@ -56,15 +54,14 @@ public class writer {
 				String line = (String) scanner.nextLine();
 				methodNames.add(line.trim());
 			}
+			scanner.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
 	private static void createXmlFile() throws ParserConfigurationException, TransformerException {
-		// TODO Auto-generated method stub
 		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 		Document document = documentBuilder.newDocument();
@@ -142,8 +139,6 @@ public class writer {
 	}
 
 	private static void SearchFileContents() {
-		// TODO Auto-generated method stub
-		
 		File directoryPath = new File(lookupFolderPath);
 		String contents[] = directoryPath.list();
 		
@@ -160,12 +155,12 @@ public class writer {
 						String line = (String) scanner.nextLine();
 						// System.out.println(line);
 
-						if (line.contains("package")) {
+						if (line.startsWith("package ")) {
 							file = line.split("\\s+")[1].replaceAll(";$", "") + "." + file.replaceAll(".java", "");
 						}
 
 						for (String method : methodNames) {
-							if (line.contains(method)) {
+							if (line.contains("public void "+method+"()")) {
 								System.out.println(line);
 
 								if (map.containsKey(file)) {
@@ -181,7 +176,6 @@ public class writer {
 						}
 					}
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
